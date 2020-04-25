@@ -505,8 +505,10 @@ int mixer_wait_event(struct mixer *mixer, int timeout)
     }
 #endif
 
-    if (!count)
+    if (!count) {
+        free(pfd);
         return 0;
+    }
 
     for (;;) {
         int err;
